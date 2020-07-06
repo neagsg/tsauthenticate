@@ -7,6 +7,7 @@ interface JWTPayload {
 	iat: number;
 	exp: number;
 }
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function authMiddleware(
 	request: Request,
 	response: Response,
