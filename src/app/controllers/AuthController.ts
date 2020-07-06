@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import bcript from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-import secret from '../utils/authSecret';
+import authSecret from '../utils/authSecret';
 
 class AuthController {
 	async authenticate(request: Request, response: Response) {
@@ -24,7 +24,9 @@ class AuthController {
 
 		delete user.password;
 
-		const token = jwt.sign({ id: user.id }, secret.secret, { expiresIn: '7d' });
+		const token = jwt.sign({ id: user.id }, authSecret.secret, {
+			expiresIn: '7d',
+		});
 
 		return response.json({
 			user,
